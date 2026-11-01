@@ -23,16 +23,14 @@ def main():
     print(hallway.getAllDirections())
     player = Player(name, entrance)
     
-    while True:
+    game = "on"
+    
+    while game == "on":
         move = input(f"\nYou are in {player.getCurrentRoomName()}\n{player.getCurrentRoomDescription()}\n\nAvailable exits: {player.getCurrentRoom().getAllDirections()}\n\n>")
-        if move.lower() == "north":
-            player.moveNorth()
-        if move.lower() == "east":
-            player.moveEast()
-        if move.lower() == "south":
-            player.moveSouth()
-        if move.lower() == "west":
-            player.moveWest()
+        player.move(move.lower())
+        if move.lower() == "exit":
+            game = "off"
+            
     
 def link_rooms(room1, direction, room2, opposite_direction):
     room1.addExit(direction, room2)

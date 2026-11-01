@@ -15,32 +15,10 @@ class Player:
         if self.health < 0:
             self.health = 0
     
-    def moveNorth(self):
-        try:
-            if self.currentRoom.getNorthExit() != None:
-                self.currentRoom = self.currentRoom.getNorthExit()
-        except Exception:
-            print("\nThere is no room there")
-    
-    def moveEast(self):
-        try:
-            if self.currentRoom.getEastExit() != None:
-                self.currentRoom = self.currentRoom.getEastExit()
-        except Exception:
-            print("\nThere is no room there")
-        
-    def moveSouth(self):
-        try:
-            if self.currentRoom.getSouthExit() != None:
-                self.currentRoom = self.currentRoom.getSouthExit()
-        except Exception:
-            print("\nThere is no room there")
-        
-    def moveWest(self):
-        try:
-            if self.currentRoom.getWestExit() != None:
-                self.currentRoom = self.currentRoom.getWestExit()
-        except Exception:
+    def move(self, direction):
+        if self.currentRoom.getExit(direction.lower()) != None:
+            self.currentRoom = self.currentRoom.getExit(direction.lower())
+        else:
             print("\nThere is no room there")
     
     def getCurrentRoom(self):

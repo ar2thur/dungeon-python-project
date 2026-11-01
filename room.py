@@ -7,7 +7,7 @@ class Room:
         self.directions = []
         Room.all_rooms.append(self)
     
-    def addExit(self, direction, room: Room):
+    def addExit(self, direction, room: "Room"):
         self.exits[direction.lower()] = room
         self.directions.append(direction)
     
@@ -26,17 +26,8 @@ class Room:
     def getRooms(self):
         return self.all_rooms
     
-    def getNorthExit(self):
-        return self.exits["north"]
-    
-    def getEastExit(self):
-        return self.exits["east"]
-    
-    def getSouthExit(self):
-        return self.exits["south"]
-    
-    def getWestExit(self):
-        return self.exits["west"]
+    def getExit(self, direction):
+        return self.exits.get(direction.lower())
 
     def getAllDirections(self):
         return [direction.capitalize() for direction in self.exits.keys()]
