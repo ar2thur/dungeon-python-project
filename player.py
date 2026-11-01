@@ -16,8 +16,11 @@ class Player:
             self.health = 0
     
     def move(self, direction):
-        if self.currentRoom.getExit(direction.lower()) != None:
-            self.currentRoom = self.currentRoom.getExit(direction.lower())
+        
+        exit = self.currentRoom.getExit(direction.lower())
+        
+        if exit != None:
+            self.currentRoom = exit
         else:
             print("\nThere is no room there")
     
@@ -29,7 +32,4 @@ class Player:
     
     def getCurrentRoomDescription(self):
         return self.currentRoom.getDescription()
-    
-    def getCurrentRoomExits(self):
-        return self.currentRoom.getAllExits()
     

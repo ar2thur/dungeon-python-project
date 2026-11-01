@@ -4,12 +4,10 @@ class Room:
         self.name = name
         self.description = description
         self.exits = {}
-        self.directions = []
         Room.all_rooms.append(self)
     
     def addExit(self, direction, room: "Room"):
         self.exits[direction.lower()] = room
-        self.directions.append(direction)
     
     def setName(self, name):
         self.name = name

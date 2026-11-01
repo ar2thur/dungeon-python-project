@@ -27,9 +27,9 @@ def main():
     
     while game == "on":
         move = input(f"\nYou are in {player.getCurrentRoomName()}\n{player.getCurrentRoomDescription()}\n\nAvailable exits: {player.getCurrentRoom().getAllDirections()}\n\n>")
-        player.move(move.lower())
         if move.lower() == "exit":
             game = "off"
+        player.move(move.lower())
             
     
 def link_rooms(room1, direction, room2, opposite_direction):
