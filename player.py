@@ -6,7 +6,7 @@ class Player:
         self.health = 100
         self.power = 10
         if self.name == "y" or self.name == "":
-            self.name == "William"
+            self.name = "William"
         self.currentRoom = currentRoom
         
 
@@ -54,3 +54,4 @@ class Player:
     
     def getCurrentRoomExits(self):
         return self.currentRoom.getAllExits()
+    
