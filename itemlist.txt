@@ -1,0 +1,16 @@
+We can have a class named Item, then multiple classes inheriting their functions that all items have.
+
+What attributes do all items have? What types of items should I add? How would this interact with the player constructer?
+
+Let's add 3 types: Potion, Armor, Weapon
+
+We should have a player function that goes: player.addToInventory(Item: item), each item should have it's own attributes, 
+I might be able to add an overall constructor for them though
+
+Maybe item rarity?
+
+Item attributes: Name, Description, Rarity
+
+Item functions: getName(), getDescription()
+
+Need to get item list, then remove one item and add it into my inventory
