@@ -11,11 +11,12 @@ class Player:
         self.power = 10
         self.armor = 0
         self.inventory = {}
+        self.countedInventory = {}
         self.equippedItems = {}
         if self.name == "y" or self.name == "":
             self.name = "William"
         self.currentRoom = currentRoom
-        
+
 
     def takeDamage(self, damage):
         self.health -= damage
@@ -38,14 +39,19 @@ class Player:
         for item in items:
             if takeItem == item.getName():
                 self.inventory[takeItem] = item
+                if self.countedInventory.get(takeItem) is not None:
+                    self.countedInventory[takeItem] += 1
+                else:
+                    self.countedInventory[takeItem] = 1
                 print(f"You took: {takeItem}")
                 takenItems = True
+
                 break
         
-        if takenItems == False:
-            print("You found no such item")
-        else:
+        if takenItems == True:
             self.currentRoom.removeItemInRoom(self.inventory[takeItem])
+        else:
+            print(f"\nYou found no such item.")
     
     def displayItem(self,item):
         if item in self.inventory:
@@ -54,9 +60,18 @@ class Player:
             print(f"You do not have {item}")
     
     def displayInventory(self):
-        return list(self.inventory.keys())
+        inventoryD = []
+        for item in self.countedInventory:
+            count = self.countedInventory[item]
+            if count > 1:
+                formatted_string = f"{item} * {count}"
+                inventoryD.append(formatted_string)
+            if count == 1:
+                inventoryD.append(f"{item}")
+        
+        return inventoryD
     
-    def use(self,item):
+    def equip(self,item):
         if item in self.inventory:
             object = self.inventory[item]
             if type(object) is Armor:
@@ -75,7 +90,7 @@ class Player:
                     self.health = 100
                 self.inventory.pop(item)
             else:
-                print(f"You are unable to use '{item}'.")
+                print(f"You are unable to equip '{item}'.")
     
     def unEquip(self, item):
         if item in self.equippedItems:

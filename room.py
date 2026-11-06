@@ -40,9 +40,27 @@ class Room:
     
     def getItemNames(self):
         itemNames = []
+        itemCounts = {}
+
         for item in self.items:
             itemNames.append(item.getName())
-        return itemNames
+
+        for name in itemNames:
+            if name in itemCounts:
+                itemCounts[name] += 1
+            else:
+                itemCounts[name] = 1
+        
+        itemNamesFormatted = []
+
+        for name in itemCounts:
+            count = itemCounts[name]
+            if count > 1:
+                itemNamesFormatted.append(f"{name} * {count}")
+            else:
+                itemNamesFormatted.append(name)
+
+        return itemNamesFormatted
     
     def hasItems(self):
         if self.items:
