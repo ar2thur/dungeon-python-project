@@ -3,7 +3,11 @@ from room import Room
 from item import Item
 
 def main():
-    print(True)
+    string = "this is a string"
+    
+    stringArr = string.split()
+    
+    print(stringArr)
 
 
 
